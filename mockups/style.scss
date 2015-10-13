@@ -4,6 +4,13 @@ $highlight-color-1: #999999;
 $highlight-color-2: #666666;
 $main-color-1: #DDDDDD;
 
+// Mix-ins
+@mixin border-radius($r) {
+  -webkit-border-radius: $r;
+  -moz-border-radius: $r;
+  border-radius: $r;
+}
+
 // Content
 * {
   font-family: 'Yanone Kaffeesatz', sans-serif;
@@ -15,6 +22,7 @@ body, html {
   margin: 0;
 }
 
+// HEADER
 .header {
   position: absolute;
   top: 0;
@@ -33,13 +41,40 @@ body, html {
 .header-right {
   display: inline-block;
   position: absolute;
+  text-align: right;
   height: $header-height;
   line-height: $header-height;
   right: 30px;
   top: 0;
+
+  ul {
+    visibility: hidden;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid black;
+    border-bottom: none;
+    transition-delay: .75s;
+  }
+  li {
+    line-height: 20px;
+    padding: 10px 20px;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+  }
+  li:hover {
+    background-color: $highlight-color-1;
+  }
+  li:active {
+    background-color: $highlight-color-2;
+  }
+}
+.header-right:hover > ul {
+  visibility: visible;
+    transition-delay: 0s;
 }
 
-
+// SPLASH
 .splash {
   position: relative;
   height: 100vh;
@@ -62,9 +97,7 @@ body, html {
 
 .button {
   border: 1px solid black;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
+  @include border-radius(20px);
 
   display: inline-block;
   width: 100px;
@@ -80,6 +113,7 @@ body, html {
   background-color: $highlight-color-2;
 }
 
+// SECTIONS
 .section {
   min-height: 100px;
   padding: 100px;
