@@ -1,0 +1,15 @@
+<div class="main-container">
+  <h1>Your Library</h1>
+
+  <div class="button">Add Book</div>
+
+  <table class="library-list">
+    {{#each books}}
+      <tr class="book-item">
+        <td>{{this.title}}</td>
+        <td>{{this.author}}</td>
+        <td>{{this.location}}</td>
+      </tr>
+    {{/each}}
+  </table>
+</div>

@@ -1,0 +1,48 @@
+<div id="templateContent"></div>
+
+
+<script type="text/javascript" charset="utf-8">
+  window.onload = function() {
+    var data = {
+      'books':
+              [
+                {
+                  "id": 1,
+                  "title": "Test Book",
+                  "author": "Craig",
+                  "owner": "Chris",
+                  "location": "Apt 14B"
+                },
+                {
+                  "id": 2,
+                  "title": "The Iliad",
+                  "author": "Homer",
+                  "owner": "Randy",
+                  "location": "Apt 14B"
+                },
+                {
+                  "id": 3,
+                  "title": "The Perks of Being a Wallflower",
+                  "author": "Chbosky",
+                  "owner": "Chris",
+                  "location": "Apt 14B"
+                },
+                {
+                  "id": 4,
+                  "title": "The Hitchhikers Guide to the Galaxy",
+                  "author": "Adams",
+                  "owner": "Chris",
+                  "location": "Longview Hall"
+                },
+                {
+                  "id": 5,
+                  "title": "Harry Potter",
+                  "author": "Rowling",
+                  "owner": "Chris",
+                  "location": "Apt 14B"
+                }
+              ]
+    };
+    insertTemplateJSON('templateContent', 'library', data);
+  }
+</script>

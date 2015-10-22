@@ -116,6 +116,18 @@ body, html {
 .section:nth-of-type(2n+1) {
   background-color: #dddddd; }
 
+.main-container {
+  min-height: 100vh;
+  padding: 80px 0;
+  text-align: center; }
+  .main-container .button {
+    margin: 20px 0; }
+  .main-container table {
+    margin: 0 auto;
+    text-align: left; }
+    .main-container table td {
+      padding: 0 20px; }
+
 .footer {
   min-height: 150px;
   padding: 50px 20% 20px 20%;
@@ -139,6 +151,15 @@ hr {
   padding: 0;
   margin: 0;
   border: 1px solid black; }
+
+h1 {
+  font-size: 48px;
+  font-weight: 300;
+  margin: 0; }
+
+h2 {
+  font-size: 32px;
+  font-weight: 300; }
 
 h3 {
   font-weight: 300; }

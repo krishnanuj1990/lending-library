@@ -6,6 +6,6 @@ get '/' do
   erb :landing_page
 end
 
-get '/home' do
-  erb :home
+get '/library' do
+  erb :library
 end

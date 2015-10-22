@@ -154,6 +154,28 @@ body, html {
 }
 
 
+// AVERAGE PAGES
+.main-container {
+  min-height: 100vh;
+  padding: 80px 0;
+  text-align: center;
+
+  .button {
+    margin: 20px 0;
+  }
+
+  table {
+    margin: 0 auto;
+    text-align: left;
+
+    td {
+      padding: 0 20px;
+    }
+  }
+}
+
+
+// FOOTER
 .footer {
   min-height: 150px;
   padding: 50px 20% 20px 20%;
@@ -174,7 +196,7 @@ body, html {
   }
 }
 
-// Utilities
+// UTILITIES
 .w400 {
   font-size: inherit;
   font-weight: 400;
@@ -186,6 +208,15 @@ hr {
   border: 1px solid black;
 }
 
+h1 {
+  font-size: 48px;
+  font-weight: 300;
+  margin: 0;
+}
+h2 {
+  font-size: 32px;
+  font-weight: 300;
+}
 h3 {
   font-weight: 300;
 }
