@@ -1,8 +1,13 @@
 // Variables
 $header-height: 50px;
-$highlight-color-1: #999999;
-$highlight-color-2: #666666;
-$main-color-1: #DDDDDD;
+//$highlight-color-1: #161021;
+$highlight-color-1-alpha: rgba(53,34,84,0.9);
+$highlight-color-1: rgb(53,34,84);
+$highlight-color-2: #25183A;
+$video-tint: rgba(61,39,97, 0.7);
+$main-color-1: #C0B7CF;
+$main-color-2: #FFF2FF;
+$secondary-font-color: #FFF2FF;
 
 // Mix-ins
 @mixin border-radius($r) {
@@ -24,11 +29,12 @@ body, html {
 
 // HEADER
 .header {
-  position: absolute;
+  position: fixed;
   top: 0;
   height: $header-height;
   width: 100%;
-  background-color: $highlight-color-1;
+  background-color: $highlight-color-1-alpha;
+  color: $secondary-font-color;
 }
 .header-left {
   display: inline-block;
@@ -61,6 +67,7 @@ body, html {
     padding: 10px 20px;
     border-bottom: 1px solid black;
     cursor: pointer;
+    background-color: $highlight-color-1-alpha;
   }
   li:hover {
     background-color: $highlight-color-1;
@@ -79,7 +86,9 @@ body, html {
   position: relative;
   height: 100vh;
   text-align: center;
-  background-color: $main-color-1;
+  text-shadow: 0 0 3px #000;
+  color: $secondary-font-color;
+  background-color: $video-tint;
 }
 .splash::before {
   content: '';
@@ -87,7 +96,6 @@ body, html {
   display: inline-block;
   vertical-align: middle;
 }
-
 .splash-content {
   display: inline-block;
   vertical-align: middle;
@@ -95,8 +103,26 @@ body, html {
   font-weight: 300;
 }
 
+.background-video-container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -1;
+
+  .background-video {
+    min-width: 100%;
+    min-height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
 .button {
-  border: 1px solid black;
+  border: 1px solid white;
   @include border-radius(20px);
 
   display: inline-block;
@@ -118,6 +144,7 @@ body, html {
   min-height: 100px;
   padding: 100px;
   text-align: center;
+  background-color: $main-color-2;
 
   .title {
     font-size: 48px;
@@ -181,6 +208,7 @@ body, html {
   padding: 50px 20% 20px 20%;
   background-color: $highlight-color-1;
   text-align: center;
+  color: $secondary-font-color;
 
   .column {
     text-align: left;

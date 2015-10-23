@@ -8,11 +8,12 @@ body, html {
   margin: 0; }
 
 .header {
-  position: absolute;
+  position: fixed;
   top: 0;
   height: 50px;
   width: 100%;
-  background-color: #999999; }
+  background-color: rgba(53, 34, 84, 0.9);
+  color: #fff2ff; }
 
 .header-left {
   display: inline-block;
@@ -42,11 +43,12 @@ body, html {
     line-height: 20px;
     padding: 10px 20px;
     border-bottom: 1px solid black;
-    cursor: pointer; }
+    cursor: pointer;
+    background-color: rgba(53, 34, 84, 0.9); }
   .header-right li:hover {
-    background-color: #999999; }
+    background-color: #352254; }
   .header-right li:active {
-    background-color: #666666; }
+    background-color: #25183a; }
 
 .header-right:hover > ul {
   visibility: visible;
@@ -56,7 +58,9 @@ body, html {
   position: relative;
   height: 100vh;
   text-align: center;
-  background-color: #dddddd; }
+  text-shadow: 0 0 3px #000;
+  color: #fff2ff;
+  background-color: rgba(61, 39, 97, 0.7); }
 
 .splash::before {
   content: '';
@@ -70,8 +74,23 @@ body, html {
   font-size: 48px;
   font-weight: 300; }
 
+.background-video-container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -1; }
+  .background-video-container .background-video {
+    min-width: 100%;
+    min-height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0; }
+
 .button {
-  border: 1px solid black;
+  border: 1px solid white;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
@@ -83,15 +102,16 @@ body, html {
   cursor: pointer; }
 
 .button:hover {
-  background-color: #999999; }
+  background-color: #352254; }
 
 .button:active {
-  background-color: #666666; }
+  background-color: #25183a; }
 
 .section {
   min-height: 100px;
   padding: 100px;
-  text-align: center; }
+  text-align: center;
+  background-color: #fff2ff; }
   .section .title {
     font-size: 48px;
     font-weight: 300;
@@ -114,7 +134,7 @@ body, html {
     padding-left: 50px; }
 
 .section:nth-of-type(2n+1) {
-  background-color: #dddddd; }
+  background-color: #c0b7cf; }
 
 .main-container {
   min-height: 100vh;
@@ -131,8 +151,9 @@ body, html {
 .footer {
   min-height: 150px;
   padding: 50px 20% 20px 20%;
-  background-color: #999999;
-  text-align: center; }
+  background-color: #352254;
+  text-align: center;
+  color: #fff2ff; }
   .footer .column {
     text-align: left;
     display: inline-block;
