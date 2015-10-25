@@ -1,13 +1,14 @@
 // Variables
 $header-height: 50px;
 //$highlight-color-1: #161021;
-$highlight-color-1-alpha: rgba(53,34,84,0.9);
-$highlight-color-1: rgb(53,34,84);
-$highlight-color-2: #25183A;
-$video-tint: rgba(61,39,97, 0.7);
-$main-color-1: #C0B7CF;
-$main-color-2: #FFF2FF;
-$secondary-font-color: #FFF2FF;
+$highlight-color-1-alpha: rgba(16, 42, 63, 0.9);
+$highlight-color-1: rgb(16, 42, 63);
+$highlight-color-2: #0b1d29;
+//$video-tint: rgba(67, 33, 33, 0.8);
+$video-tint: rgba(50,48,50, 0.8);
+$main-color-1: #cfdfe7;
+$main-color-2: #FFFFFF;
+$secondary-font-color: #FFFFFF;
 
 // Mix-ins
 @mixin border-radius($r) {
@@ -21,10 +22,14 @@ $secondary-font-color: #FFF2FF;
   font-family: 'Yanone Kaffeesatz', sans-serif;
   font-weight: 200;
   font-size: 18px;
+  line-height: 1.5;
 }
 body, html {
   padding: 0;
   margin: 0;
+}
+body{
+  background-color: $main-color-2;
 }
 
 // HEADER
@@ -43,6 +48,9 @@ body, html {
   line-height: $header-height;
   left: 30px;
   top: 0;
+  font-weight: 400;
+  font-size: larger;
+  cursor: pointer;
 }
 .header-right {
   display: inline-block;
@@ -52,6 +60,7 @@ body, html {
   line-height: $header-height;
   right: 30px;
   top: 0;
+  cursor: pointer;
 
   ul {
     visibility: hidden;
@@ -155,7 +164,11 @@ body, html {
   .icon {
     width: 100px;
     display: block;
-    margin: 0 auto 30px auto;
+    margin: 0 auto;
+  }
+  .icon + h3 {
+    font-weight: 400;
+    font-size: 24px;
   }
   
   .text-block {
