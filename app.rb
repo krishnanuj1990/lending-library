@@ -70,3 +70,9 @@ end
 get '/library' do
   erb :library
 end
+
+get '/api/isbninfo' do
+  isbn = params[:isbn]
+  content = open("https://www.googleapis.com/books/v1/volumes?q=isbn:#{isbn}").read
+  content
+end
