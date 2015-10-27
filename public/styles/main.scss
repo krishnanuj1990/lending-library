@@ -208,6 +208,10 @@ body{
     margin: 0 auto;
     text-align: left;
 
+    th {
+      padding: 0 20px;
+      font-weight: 400;
+    }
     td {
       padding: 0 20px;
     }
@@ -264,4 +268,8 @@ h3 {
 
 .align-left {
   text-align: left;
+}
+
+.hidden {
+  display: none;
 }

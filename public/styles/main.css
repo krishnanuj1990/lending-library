@@ -156,6 +156,9 @@ body {
   .main-container table {
     margin: 0 auto;
     text-align: left; }
+    .main-container table th {
+      padding: 0 20px;
+      font-weight: 400; }
     .main-container table td {
       padding: 0 20px; }
 
@@ -198,3 +201,6 @@ h3 {
 
 .align-left {
   text-align: left; }
+
+.hidden {
+  display: none; }

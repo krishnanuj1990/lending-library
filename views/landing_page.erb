@@ -3,8 +3,15 @@
   <div class="splash-content">
     Welcome to <span class="w400">BookBag</span>
     <br/>
-    <div class="button">
+    <div class="button" id="splash-login-button">
       log in
+    </div>
+    <div class="hidden" id="form-container">
+      <form action="/api/user/signup" method="post">
+        <label for="username" class="username">Username</label><input id="username" maxlength="100" name="username" size="25" type="text">
+        <label for="password" class="password">Password</label><input maxlength="25" name="password" size="25" type="password">
+        <input type="submit" value="Sign Up">
+      </form>
     </div>
   </div>
 
