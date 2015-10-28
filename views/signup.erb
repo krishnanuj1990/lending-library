@@ -1,5 +1,19 @@
-<form action="/api/user/signup" method="post">
-    <label for="username" class="username">Username</label><input id="username" maxlength="100" name="username" size="25" type="text">
-    <label for="password" class="password">Password</label><input maxlength="25" name="password" size="25" type="password">
-    <input type="submit" value="Sign Up">
-</form>
+<div class="splash">
+
+  <div class="splash-content">
+    <h1>Join BookBag</h1>
+
+    <form action="/api/user/signup" method="post">
+      <fieldset>
+        <label for="username" class="username">Username</label><input id="username" maxlength="100" name="username" type="text">
+      </fieldset>
+      <fieldset>
+        <label for="password" class="password">Password</label><input maxlength="25" name="password" type="password">
+      </fieldset>
+      <fieldset>
+        <input type="submit" value="Sign Up" class="button-light">
+      </fieldset>
+    </form>
+  </div>
+
+</div>

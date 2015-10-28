@@ -1,4 +1,4 @@
-require 'sinatra'
+require 'data_mapper'
 require 'bcrypt'
 
 
@@ -66,9 +66,9 @@ class User
     if not @users.count > 0
       u.password = Password.create(params[:password])
       u.save
-      return 'Success'
+      return true
     else
-      return 'Username already exists in db'
+      return 'Username is already in use.'
     end
   end
 

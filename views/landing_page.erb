@@ -1,11 +1,12 @@
-<div class="splash">
+<div class="splash home-color-scheme">
 
   <div class="splash-content">
-    Welcome to <span class="w400">BookBag</span>
+    <h1>Welcome to <span class="w400">BookBag</span></h1>
     <br/>
     <div class="button" id="splash-login-button">
       log in
     </div>
+
     <div class="hidden" id="form-container">
       <form action="/api/user/signup" method="post">
         <label for="username" class="username">Username</label><input id="username" maxlength="100" name="username" size="25" type="text">
@@ -13,6 +14,8 @@
         <input type="submit" value="Sign Up">
       </form>
     </div>
+
+    <a href="/signup" class="small-link">register</a>
   </div>
 
   <div class="background-video-container">
