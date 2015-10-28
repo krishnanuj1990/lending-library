@@ -1,8 +1,12 @@
 require 'sinatra'
+require 'tilt/erb'
 
 require_relative('lib/user')
 
 set :port, 45000
+
+
+# ROUTING
 
 get '/' do
   erb :landing_page
@@ -21,9 +25,8 @@ end
 # API
 post '/api/user/signup' do
   res = User.signup(params)
-  puts res
 
-  if res == true
+  if res
     erb :signup_success
   else
     @msg = res
@@ -33,8 +36,7 @@ post '/api/user/signup' do
 end
 
 post '/api/user/signin' do
-  if user = User.authenticate(params)
-    session[:user] = user
+  if user = User.login(params)
     puts 'Logged in successfully'
   else
     puts 'error logging in'

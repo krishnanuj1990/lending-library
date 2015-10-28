@@ -24,7 +24,13 @@
   </a>
 
   <div class="header-right">
-    UserName
+    <%=
+        if not @c_user.nil?
+          @c_user.name
+        else
+          'Account'
+        end
+    %>
     <ul>
       <li>Library</li>
       <li>Book bag</li>
