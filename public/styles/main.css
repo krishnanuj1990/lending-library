@@ -20,6 +20,10 @@ p {
 a {
   color: inherit; }
 
+input[type='submit'] {
+  background-color: transparent;
+  color: inherit; }
+
 .header {
   position: fixed;
   top: 0;
@@ -87,10 +91,14 @@ a {
   vertical-align: middle;
   font-weight: 300; }
 
-.home-color-scheme {
+.landing-splash {
   text-shadow: 0 0 3px #000;
   color: white;
   background-color: rgba(50, 48, 50, 0.8); }
+  .landing-splash form {
+    padding: 0; }
+  .landing-splash fieldset {
+    padding: 5px 0; }
 
 .background-video-container {
   width: 100%;

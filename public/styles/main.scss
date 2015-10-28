@@ -42,6 +42,10 @@ p {
 a {
   color: inherit;
 }
+input[type='submit'] {
+  background-color: transparent;
+  color: inherit;
+}
 
 // HEADER
 .header {
@@ -119,10 +123,17 @@ a {
   font-weight: 300;
 }
 
-.home-color-scheme {
+.landing-splash {
   text-shadow: 0 0 3px #000;
   color: $secondary-font-color;
   background-color: $video-tint;
+
+  form {
+    padding: 0;
+  }
+  fieldset {
+    padding: 5px 0;
+  }
 }
 
 .background-video-container {

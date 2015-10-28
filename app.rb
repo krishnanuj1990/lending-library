@@ -16,16 +16,6 @@ get '/signup' do
   erb :signup
 end
 
-get '/signup/success' do
-
-end
-
-get '/signup/error' do
-  @res = params['response']
-  puts @res
-  erb :signup_error
-end
-
 
 
 # API
@@ -34,13 +24,21 @@ post '/api/user/signup' do
   puts res
 
   if res == true
-    # redirect '/signup/success'
     erb :signup_success
   else
-    # msg = { :response => res }
-    # redirect "/signup/error?#{msg}"
     @msg = res
     erb :signup_error
   end
 
+end
+
+post '/api/user/signin' do
+  if user = User.authenticate(params)
+    session[:user] = user
+    puts 'Logged in successfully'
+  else
+    puts 'error logging in'
+  end
+
+  redirect '/'
 end
