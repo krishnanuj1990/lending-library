@@ -1,11 +1,25 @@
-<div class="splash">
+<div class="splash landing-splash">
 
   <div class="splash-content">
-    Welcome to <span class="w400">BookBag</span>
+    <h1>Welcome to <span class="w400">BookBag</span></h1>
     <br/>
-    <div class="button">
-      log in
+    <div class="button" id="splash-login-button">log in</div>
+
+    <div class="hidden" id="form-container">
+      <form action="/api/user/signup" method="post">
+        <fieldset>
+          <label for="username" class="username">Username</label><input id="username" maxlength="100" name="username" type="text">
+        </fieldset>
+        <fieldset>
+          <label for="password" class="password">Password</label><input maxlength="25" name="password" type="password">
+        </fieldset>
+        <fieldset>
+          <input type="submit" value="log In" class="button">
+        </fieldset>
+      </form>
     </div>
+
+    <a href="/signup" class="small-link">register</a>
   </div>
 
   <div class="background-video-container">
@@ -20,7 +34,9 @@
   <div class="title">
     What is BookBag?
   </div>
-  <div class="text-block">Plaid bitters swag readymade, kogi fixie hella American Apparel before they sold out PBR Blue Bottle farm-to-table. XOXO selvage quinoa vinyl gastropub Odd Future, bicycle rights stumptown deep v hella disrupt gluten-free Williamsburg you probably haven't heard of them. DIY synth PBR jean shorts.</div>
+  <div class="text-block">
+    Bookbag is a distributed library cataloging system designed for the professors of LeTourneau University. Bookbag enables professors to showcase their personal literary collections and allows students to checkout these books. Checkouts are tracked to ensure books are returned in a timely fashion. This system solves the problem of books that are borrowed, but then go missing due to lack of record keeping.
+  </div>
 </div>
 
 
@@ -30,15 +46,18 @@
   </div>
   <div class="column">
     <img class="icon" src="assets/add.png">
-    Plaid bitters swag readymade, kogi fixie hella American Apparel before they sold out PBR Blue Bottle farm-to-table.
+    <h3>Add Books</h3>
+    Scan the barcode with your phone, or enter the ISBN of the book, and we take care of the rest.
   </div>
   <div class="column">
     <img class="icon" src="assets/book.png">
-    Plaid bitters swag readymade, kogi fixie hella American Apparel before they sold out PBR Blue Bottle farm-to-table.
+    <h3>View Books</h3>
+    Search by title or author for the book you want and we will see if anyone has listed it as available.
   </div>
   <div class="column">
     <img class="icon" src="assets/check.png">
-    Plaid bitters swag readymade, kogi fixie hella American Apparel before they sold out PBR Blue Bottle farm-to-table.
+    <h3>Checkout Books</h3>
+    Find a book you want and check it out. This will add it to your collection and notify the owner.
   </div>
 </div>
 
@@ -48,12 +67,14 @@
     Frequently Asked Questions
   </div>
   <div class="text-block align-left">
-    <div class="question">Who can see my books?</div>
-    <div class="answer">Only users who have logged into their account will be able to search and find users and their personal library.</div>
-    <div class="question">Who can see my books?</div>
-    <div class="answer">Only users who have logged into their account will be able to search and find users and their personal library.</div>
-    <div class="question">Who can see my books?</div>
-    <div class="answer">Only users who have logged into their account will be able to search and find users and their personal library.</div>
+    <div class="question">Who can check out my books?</div>
+    <div class="answer">Only verified users who have logged into their account will be able to check out books.</div>
+
+    <div class="question">Do I have to add my books to check out books?</div>
+    <div class="answer">No, you do not have to list your own library to checkout books. However, in the spirit of community we heavily encourage you to add the books you are willing to let others borrow.</div>
+
+    <div class="question">Is this only for professors?</div>
+    <div class="answer">Not at all! The goal is for any member of the LeTourneau community to create an account and gain access to literary wealth of people's personal collections.</div>
   </div>
 </div>
 

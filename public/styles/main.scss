@@ -1,14 +1,17 @@
 // Variables
 $header-height: 50px;
-//$highlight-color-1: #161021;
-$highlight-color-1-alpha: rgba(53,34,84,0.9);
-$highlight-color-1: rgb(53,34,84);
-$highlight-color-2: #25183A;
-$video-tint: rgba(61,39,97, 0.7);
-$main-color-1: #C0B7CF;
-$main-color-2: #FFF2FF;
-$secondary-font-color: #FFF2FF;
+$header-offset: 100px;
 
+$highlight-color-1-alpha: rgba(16, 42, 63, 0.9);
+$highlight-color-1: rgb(16, 42, 63);
+$highlight-color-2: #0b1d29;
+$highlight-color-3: #9AB8D4;
+$highlight-color-4: #829BB2;
+$video-tint: rgba(50,48,50, 0.8);
+$main-color-1: #cfdfe7;
+$main-color-2: #FFFFFF;
+$secondary-font-color: #FFFFFF;
+$alternate-color-1: #8f3530;
 // Mix-ins
 @mixin border-radius($r) {
   -webkit-border-radius: $r;
@@ -16,15 +19,32 @@ $secondary-font-color: #FFF2FF;
   border-radius: $r;
 }
 
-// Content
+// RESETS
 * {
   font-family: 'Yanone Kaffeesatz', sans-serif;
-  font-weight: 200;
-  font-size: 18px;
 }
 body, html {
   padding: 0;
   margin: 0;
+}
+body{
+  background-color: $main-color-2;
+  font-weight: 200;
+  font-size: 20px;
+  line-height: 1.5;
+}
+fieldset {
+  border: none;
+}
+p {
+  font-size: 20px;
+}
+a {
+  color: inherit;
+}
+input[type='submit'] {
+  background-color: transparent;
+  color: inherit;
 }
 
 // HEADER
@@ -43,6 +63,9 @@ body, html {
   line-height: $header-height;
   left: 30px;
   top: 0;
+  font-weight: 400;
+  font-size: larger;
+  cursor: pointer;
 }
 .header-right {
   display: inline-block;
@@ -52,6 +75,7 @@ body, html {
   line-height: $header-height;
   right: 30px;
   top: 0;
+  cursor: pointer;
 
   ul {
     visibility: hidden;
@@ -86,9 +110,6 @@ body, html {
   position: relative;
   height: 100vh;
   text-align: center;
-  text-shadow: 0 0 3px #000;
-  color: $secondary-font-color;
-  background-color: $video-tint;
 }
 .splash::before {
   content: '';
@@ -99,8 +120,20 @@ body, html {
 .splash-content {
   display: inline-block;
   vertical-align: middle;
-  font-size: 48px;
   font-weight: 300;
+}
+
+.landing-splash {
+  text-shadow: 0 0 3px #000;
+  color: $secondary-font-color;
+  background-color: $video-tint;
+
+  form {
+    padding: 0;
+  }
+  fieldset {
+    padding: 5px 0;
+  }
 }
 
 .background-video-container {
@@ -121,23 +154,6 @@ body, html {
   }
 }
 
-.button {
-  border: 1px solid white;
-  @include border-radius(20px);
-
-  display: inline-block;
-  width: 100px;
-  padding: 10px;
-  font-size: 24px;
-  font-weight: 200;
-  cursor: pointer;
-}
-.button:hover {
-  background-color: $highlight-color-1;
-}
-.button:active {
-  background-color: $highlight-color-2;
-}
 
 // SECTIONS
 .section {
@@ -155,7 +171,11 @@ body, html {
   .icon {
     width: 100px;
     display: block;
-    margin: 0 auto 30px auto;
+    margin: 0 auto;
+  }
+  .icon + h3 {
+    font-weight: 400;
+    font-size: 24px;
   }
   
   .text-block {
@@ -184,7 +204,8 @@ body, html {
 // AVERAGE PAGES
 .main-container {
   min-height: 100vh;
-  padding: 80px 0;
+  min-height: calc(100vh - #{$header-offset});;
+  padding-top: $header-offset;
   text-align: center;
 
   .button {
@@ -195,10 +216,27 @@ body, html {
     margin: 0 auto;
     text-align: left;
 
+    th {
+      padding: 0 20px;
+      font-weight: 400;
+    }
     td {
       padding: 0 20px;
     }
   }
+}
+
+// FORMS
+
+form {
+  padding: 20px;
+}
+label, input {
+  padding: 5px 15px;
+  margin: 5px 0;
+}
+input {
+  width: 150px;
 }
 
 
@@ -209,6 +247,7 @@ body, html {
   background-color: $highlight-color-1;
   text-align: center;
   color: $secondary-font-color;
+  font-size: 16px;
 
   .column {
     text-align: left;
@@ -222,6 +261,46 @@ body, html {
   .column:last-of-type {
     text-align: right;
   }
+}
+
+// BUTTONS
+
+.button {
+  border: 1px solid white;
+  @include border-radius(20px);
+
+  display: inline-block;
+  width: 100px;
+  padding: 10px;
+  font-size: 24px;
+  font-weight: 200;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: $highlight-color-1;
+}
+.button:active {
+  background-color: $highlight-color-2;
+}
+
+
+.button-light {
+  border: 1px solid white;
+  @include border-radius(20px);
+  background-color: $main-color-1;
+
+  display: inline-block;
+  width: 100px;
+  padding: 10px;
+  font-size: 24px;
+  font-weight: 200;
+  cursor: pointer;
+}
+.button-light:hover {
+  background-color: $highlight-color-3;
+}
+.button-light:active {
+  background-color: $highlight-color-4;
 }
 
 // UTILITIES
@@ -249,6 +328,23 @@ h3 {
   font-weight: 300;
 }
 
+.error {
+  color: $alternate-color-1;
+}
+.small-link {
+  display: block;
+  font-size: 16px;
+  color: inherit;
+  text-decoration: none;
+}
+.small-link:hover {
+  text-decoration: underline;
+}
+
 .align-left {
   text-align: left;
+}
+
+.hidden {
+  display: none;
 }

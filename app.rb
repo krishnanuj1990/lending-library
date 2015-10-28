@@ -3,6 +3,8 @@ require 'sequel'
 require 'json'
 require 'open-uri'
 
+require_relative('lib/user')
+
 set :port, 45000
 
 Sequel::Model.plugin :json_serializer
@@ -80,12 +82,43 @@ get '/library' do
   erb :library
 end
 
+get '/signup' do
+  erb :signup
+end
+
+
+# API
 get '/api/google-api/isbn-info' do
   isbn = params[:isbn]
   content = open("https://www.googleapis.com/books/v1/volumes?q=isbn:#{isbn}").read
   content
 end
 
+post '/api/user/signup' do
+  res = User.signup(params)
+  puts res
+
+  if res == true
+    erb :signup_success
+  else
+    @msg = res
+    erb :signup_error
+  end
+
+end
+
+post '/api/user/signin' do
+  if user = User.authenticate(params)
+    session[:user] = user
+    puts 'Logged in successfully'
+  else
+    puts 'error logging in'
+  end
+
+  redirect '/'
+end
+
+# Database API
 get '/api/db/add-book' do
   Books.create(:title => params[:title], 
   	:subtitle => params[:subtitle], 
