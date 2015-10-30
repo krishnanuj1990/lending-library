@@ -4,7 +4,8 @@ require 'tilt/erb'
 
 require_relative('lib/user')
 
-set :port, 45000
+set :port, 23455
+set :environment, :production
 
 
 # ROUTING
