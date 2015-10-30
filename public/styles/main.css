@@ -264,6 +264,9 @@ h3 {
 .small-link:hover {
   text-decoration: underline; }
 
+.plain {
+  text-decoration: none; }
+
 .align-left {
   text-align: left; }
 

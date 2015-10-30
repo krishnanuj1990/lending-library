@@ -86,4 +86,8 @@ class User
     end
   end
 
+  def self.authenticate(params = {})
+
+  end
+
 end
