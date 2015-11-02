@@ -5,7 +5,7 @@ require 'bcrypt'
 # DATABASE
 DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/users.db")
 
-class Users
+class UsersDB
   include DataMapper::Resource
   property :user_id, Serial
   property :username, Text, :required => true
@@ -21,7 +21,7 @@ class User
   def self.authenticate(params = {})
     return nil if params[:username].blank? || params[:password].blank?
     
-    @user_list = Users.all(:username => params[:username].downcase)
+    @user_list = UsersDB.all(:username => params[:username].downcase)
 
     f_username = params[:username].downcase
     f_password = params[:password]
@@ -58,9 +58,9 @@ class User
   end
 
   def self.signup(params = {})
-    @users = Users.all(:username => params[:username])
+    @users = UsersDB.all(:username => params[:username])
 
-    u = Users.new
+    u = UsersDB.new
     u.username = params[:username]
 
     if not @users.count > 0
