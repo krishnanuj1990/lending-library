@@ -4,10 +4,16 @@ require 'json'
 require 'open-uri'
 require 'uri'
 require 'date'
+require 'sinatra/cookies'
+require 'tilt/erb'
 
 require_relative('lib/user')
 
-set :port, 45000
+set :port, 23455
+set :environment, :production
+
+
+# ROUTING
 
 Sequel::Model.plugin :json_serializer
 
@@ -97,21 +103,20 @@ get '/api/google-api/isbn-info' do
 end
 
 post '/api/user/signup' do
-  res = User.signup(params)
-  puts res
-
-  if res == true
+  if res = User.signup(params)
+    cookies[:u_name] = res.name
+    cookies[:u_token] = res.token
     erb :signup_success
   else
     @msg = res
     erb :signup_error
   end
-
 end
 
 post '/api/user/signin' do
-  if user = User.authenticate(params)
-    session[:user] = user
+  if user = User.login(params)
+    cookies[:u_name] = user.name
+    cookies[:u_token] = user.token
     puts 'Logged in successfully'
   else
     puts 'error logging in'
@@ -120,6 +125,7 @@ post '/api/user/signin' do
   redirect '/'
 end
 
+<<<<<<< HEAD
 
 
 
@@ -330,3 +336,9 @@ def dbReturnBook(checkoutId, returnCondition)
   return content
 end
 # End Database Middleware
+=======
+get '/api/user/signout' do
+  cookies.clear
+  redirect '/'
+end
+>>>>>>> upstream/master

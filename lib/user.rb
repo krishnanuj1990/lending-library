@@ -1,15 +1,19 @@
 require 'data_mapper'
+require 'active_support/all'
+require 'securerandom'
 require 'bcrypt'
 
 
 # DATABASE
-DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/users.db")
+DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/lib/users.db")
 
 class UsersDB
   include DataMapper::Resource
   property :user_id, Serial
-  property :username, Text, :required => true
-  property :password, Text, :required => true
+  property :username, Slug, :required => true, :default => ''
+  property :email, Slug, :required => true, :default => ''
+  property :password, Text, :required => true, :default => ''
+  property :token, Text, :required => true, :default => ''
 end
 
 DataMapper.finalize.auto_upgrade!
@@ -17,62 +21,73 @@ DataMapper.finalize.auto_upgrade!
 class User
   include BCrypt
   attr_reader :name
+  attr_reader :token
 
-  def self.authenticate(params = {})
+  def initialize(params = {})
+    @name = params[:name]
+    @token = params[:token]
+  end
+
+  def self.login(params = {})
     return nil if params[:username].blank? || params[:password].blank?
-    
-    @user_list = UsersDB.all(:username => params[:username].downcase)
 
     f_username = params[:username].downcase
     f_password = params[:password]
     db_usr = ''
     db_pwd = ''
+    db_token = ''
+
+    @user_list = Users.all(:username => f_username)
+
 
     if @user_list.count > 0
       @user_list.each do |user|
-        puts user.username
-        puts user.password
-
-        return nil if f_username != user.username
-
-        db_pwd = user.password
         db_usr = user.username
+        db_pwd = user.password
+        db_token = user.token
+
+        return nil if f_username != db_usr
       end
 
-      password = Password.new(db_pwd)
+      # Hash user inputted password
+      password = BCrypt::Password.new(db_pwd)
 
-      # The password param gets hashed by the == method.
+      # The f_password gets hashed by the != method and then compared
       if password != f_password
-        puts 'Login Failed'
+        puts 'Login Failed : incorrect password'
         return nil
       else
-        puts 'Login Succeeded'
-        User.new(db_usr)
+        return User.new(:name => db_usr, :token => db_token)
       end
 
     else
-      puts 'Login Failed'
+      puts 'Login Failed : no user found'
       return nil
     end
 
   end
 
   def self.signup(params = {})
-    @users = UsersDB.all(:username => params[:username])
+    return nil if params[:username].blank? || params[:password].blank? || params[:email].blank?
 
-    u = UsersDB.new
-    u.username = params[:username]
+    f_username = params[:username].downcase
+    @users = Users.all(:username => f_username)
 
-    if not @users.count > 0
+    if @users.count == 0
+      u = Users.new
+      u.username = f_username
+      u.email = params[:email].downcase
       u.password = Password.create(params[:password])
+      u.token = SecureRandom.base64(16)
       u.save
-      return true
+      return User.new(:name => u.username, :token => u.token)
     else
       return 'Username is already in use.'
     end
   end
 
-  def initialize(username)
-    @name = username.capitalize
+  def self.authenticate(params = {})
+
   end
+
 end

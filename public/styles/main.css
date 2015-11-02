@@ -170,6 +170,10 @@ label, input {
   padding: 5px 15px;
   margin: 5px 0; }
 
+label {
+  display: inline-block;
+  width: 80px; }
+
 input {
   width: 150px; }
 
@@ -259,6 +263,9 @@ h3 {
 
 .small-link:hover {
   text-decoration: underline; }
+
+.plain {
+  text-decoration: none; }
 
 .align-left {
   text-align: left; }

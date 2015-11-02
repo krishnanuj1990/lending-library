@@ -24,11 +24,18 @@
   </a>
 
   <div class="header-right">
-    UserName
+    <%=
+        if not cookies[:u_name].nil?
+          cookies[:u_name]
+        else
+          'Account'
+        end
+    %>
     <ul>
       <li>Library</li>
       <li>Book bag</li>
       <li>Search</li>
+      <a href="/api/user/signout" class="plain"><li>Log out</li></a>
     </ul>
   </div>
 </div>
