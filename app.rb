@@ -1,10 +1,10 @@
 require 'sinatra'
+require 'sinatra/cookies'
 require 'sequel'
 require 'json'
 require 'open-uri'
 require 'uri'
 require 'date'
-require 'sinatra/cookies'
 require 'tilt/erb'
 
 require_relative('lib/user')
@@ -46,9 +46,11 @@ end
 
 DB.create_table! :users do 
   primary_key :user_id
+  String :username
   String :email
   String :password
   String :password_reset_hash
+  String :token
   Integer :permissions
   String :first_name
   String :last_name
@@ -125,10 +127,10 @@ post '/api/user/signin' do
   redirect '/'
 end
 
-<<<<<<< HEAD
-
-
-
+get '/api/user/signout' do
+  cookies.clear
+  redirect '/'
+end
 
 
 
@@ -336,9 +338,3 @@ def dbReturnBook(checkoutId, returnCondition)
   return content
 end
 # End Database Middleware
-=======
-get '/api/user/signout' do
-  cookies.clear
-  redirect '/'
-end
->>>>>>> upstream/master

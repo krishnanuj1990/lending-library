@@ -1,22 +1,6 @@
-require 'data_mapper'
 require 'active_support/all'
 require 'securerandom'
 require 'bcrypt'
-
-
-# DATABASE
-DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/lib/users.db")
-
-class UsersDB
-  include DataMapper::Resource
-  property :user_id, Serial
-  property :username, Slug, :required => true, :default => ''
-  property :email, Slug, :required => true, :default => ''
-  property :password, Text, :required => true, :default => ''
-  property :token, Text, :required => true, :default => ''
-end
-
-DataMapper.finalize.auto_upgrade!
 
 class User
   include BCrypt
@@ -37,7 +21,7 @@ class User
     db_pwd = ''
     db_token = ''
 
-    @user_list = Users.all(:username => f_username)
+    @user_list = Users.where(:username => f_username).all
 
 
     if @user_list.count > 0
@@ -71,16 +55,19 @@ class User
     return nil if params[:username].blank? || params[:password].blank? || params[:email].blank?
 
     f_username = params[:username].downcase
-    @users = Users.all(:username => f_username)
+    @users = Users.where(:username => f_username).all
 
     if @users.count == 0
-      u = Users.new
-      u.username = f_username
-      u.email = params[:email].downcase
-      u.password = Password.create(params[:password])
-      u.token = SecureRandom.base64(16)
-      u.save
-      return User.new(:name => u.username, :token => u.token)
+      token = SecureRandom.base64(16)
+
+      Users.create(
+        :username => f_username, 
+        :email => params[:email].downcase, 
+        :password => Password.create(params[:password]), 
+        :token => token
+      )
+
+      return User.new(:name => f_username, :token => token)
     else
       return 'Username is already in use.'
     end
