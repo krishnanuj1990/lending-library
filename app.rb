@@ -3,6 +3,7 @@ require 'sequel'
 require 'json'
 require 'open-uri'
 require 'uri'
+require 'date'
 
 require_relative('lib/user')
 
@@ -249,7 +250,6 @@ def dbRemoveBook(bookId)
 end
 
 def dbGetBook(bookId)
-
   content = open("http://localhost:#{settings.port}/api/db/get-book?book_id=#{bookId}").read
   return content
 end
@@ -260,7 +260,6 @@ def dbGetBooks()
 end
 
 def dbGetUserBooks(userId)
-
   content = open("http://localhost:#{settings.port}/api/db/get-user-books?user_id=#{userId}").read
   return content
 end
@@ -280,13 +279,11 @@ end
 
 ## Checkout Related
 def dbGetCheckout(checkoutId)
-
   content = open("http://localhost:#{settings.port}/api/db/get-checkout?checkout_id=#{checkoutId}").read
   return content
 end
 
 def dbGetUserCheckouts(userId)
-
   content = open("http://localhost:#{settings.port}/api/db/get-user-checkouts?user_id=#{userId}").read
   return content
 end
@@ -296,7 +293,15 @@ def dbGetCheckouts()
   return content
 end
 
-def dbCheckoutBook(bookId, userId, checkoutDate, dueDate)
+def dbCheckoutBook(bookId, userId)
+  current_time = DateTime.now
+  # Add two weeks to the current date
+  due_time = Time.now + (2*7*24*60*60)
+  
+
+  # Get the dates from the vareables
+  checkoutDate = current_time.strftime "%Y-%m-%d"
+  dueDate = due_time.strftime "%Y-%m-%d"
 
   uri = URI.parse("http://localhost:#{settings.port}/api/db/checkout-book")
   uri.query = URI.encode_www_form(
@@ -309,7 +314,10 @@ def dbCheckoutBook(bookId, userId, checkoutDate, dueDate)
   return content
 end
 
-def dbReturnBook(checkoutId, returnDate, returnCondition)  
+def dbReturnBook(checkoutId, returnCondition)  
+  current_time = DateTime.now
+
+  returnDate = current_time.strftime "%Y-%m-%d"
 
   uri = URI.parse("http://localhost:#{settings.port}/api/db/return-book")
   uri.query = URI.encode_www_form(
