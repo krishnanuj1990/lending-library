@@ -1,11 +1,25 @@
-<div class="splash">
+<div class="splash landing-splash">
 
   <div class="splash-content">
-    Welcome to <span class="w400">BookBag</span>
+    <h1>Welcome to <span class="w400">BookBag</span></h1>
     <br/>
-    <div class="button">
-      log in
+    <div class="button" id="splash-login-button">log in</div>
+
+    <div class="hidden" id="form-container">
+      <form action="/api/user/signin" method="post">
+        <fieldset>
+          <label for="username" class="username">Username</label><input id="username" maxlength="100" name="username" type="text">
+        </fieldset>
+        <fieldset>
+          <label for="password" class="password">Password</label><input maxlength="25" name="password" type="password">
+        </fieldset>
+        <fieldset>
+          <input type="submit" value="log In" class="button">
+        </fieldset>
+      </form>
     </div>
+
+    <a href="/signup" class="small-link">register</a>
   </div>
 
   <div class="background-video-container">

@@ -4,11 +4,17 @@
   <div class="button">Add Book</div>
 
   <table class="library-list">
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Owner</th>
+    </tr>
+
     {{#each books}}
       <tr class="book-item">
         <td>{{this.title}}</td>
         <td>{{this.author}}</td>
-        <td>{{this.location}}</td>
+        <td>{{this.owner}}</td>
       </tr>
     {{/each}}
   </table>

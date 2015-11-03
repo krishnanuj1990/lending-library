@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>BookBag</title>
-  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="/styles/main.css">
   <link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:200,300,400,700' rel='stylesheet' type='text/css'>
   <script src="/js/handlebars.runtime-v4.0.2.js"></script>
   <script src="/js/templates.js"></script>
   <script src="/js/utilities.js"></script>
+  <script src="/js/tail.js"></script>
 </head>
 <body>
 
@@ -16,15 +17,25 @@
 </div>
 
 <div class="header">
-  <div class="header-left">
-    BookBag
-  </div>
+  <a href="/">
+    <div class="header-left">
+      BookBag
+    </div>
+  </a>
+
   <div class="header-right">
-    UserName
+    <%=
+        if not cookies[:u_name].nil?
+          cookies[:u_name]
+        else
+          'Account'
+        end
+    %>
     <ul>
       <li>Library</li>
       <li>Book bag</li>
       <li>Search</li>
+      <a href="/api/user/signout" class="plain"><li>Log out</li></a>
     </ul>
   </div>
 </div>
