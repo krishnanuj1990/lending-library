@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 require 'data_mapper'
+=======
+>>>>>>> 62ca994a3aa2a4e33ca3e515abd2e6acc6840554
 require 'active_support/all'
 require 'securerandom'
 require 'bcrypt'
 
+<<<<<<< HEAD
 
 # DATABASE
 DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/lib/users.db")
@@ -18,6 +22,8 @@ end
 
 DataMapper.finalize.auto_upgrade!
 
+=======
+>>>>>>> 62ca994a3aa2a4e33ca3e515abd2e6acc6840554
 class User
   include BCrypt
   attr_reader :name
@@ -37,7 +43,11 @@ class User
     db_pwd = ''
     db_token = ''
 
+<<<<<<< HEAD
     @user_list = Users.all(:username => f_username)
+=======
+    @user_list = Users.where(:username => f_username).all
+>>>>>>> 62ca994a3aa2a4e33ca3e515abd2e6acc6840554
 
 
     if @user_list.count > 0
@@ -71,6 +81,7 @@ class User
     return nil if params[:username].blank? || params[:password].blank? || params[:email].blank?
 
     f_username = params[:username].downcase
+<<<<<<< HEAD
     @users = Users.all(:username => f_username)
 
     if @users.count == 0
@@ -81,6 +92,21 @@ class User
       u.token = SecureRandom.base64(16)
       u.save
       return User.new(:name => u.username, :token => u.token)
+=======
+    @users = Users.where(:username => f_username).all
+
+    if @users.count == 0
+      token = SecureRandom.base64(16)
+
+      Users.create(
+        :username => f_username, 
+        :email => params[:email].downcase, 
+        :password => Password.create(params[:password]), 
+        :token => token
+      )
+
+      return User.new(:name => f_username, :token => token)
+>>>>>>> 62ca994a3aa2a4e33ca3e515abd2e6acc6840554
     else
       return 'Username is already in use.'
     end

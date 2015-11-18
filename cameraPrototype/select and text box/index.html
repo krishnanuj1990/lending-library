@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Barcode</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body style="margin: 0; background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#eee), to(#fff)) no-repeat; font-size: 13px;">
+        <form id="form">
+            <div style="background-color: #fff; solid #ddd;">
+                <input type="file" id="file" style="width: 280px; line-height: 18px; padding: 20px;" />
+            </div>
+
+            <p id="isbn" style="font-family: Helvetica, sans-serif; width: 320px; line-height: 18px; padding: 0; text-align: center;">
+                Please select a sharp photo of a barcode above
+            </p>
+
+            <canvas id="canvas" width="2000" height="1500" style="width: 320px; height: 240px;"></canvas>
+        </form>
+       <html>
+        <script src="barcode.js"></script>
+        
+        
+     <div style="background-color: #ffd; solid #ddd;">  
+ 		<h1>ISBN Input and Output</h1>
+	 	<form action = "">
+  
+
+  <fieldset style="width: 60mm">
+  <label>Type your ISBN: </label>
+  <br/>
+  <input type = "text" id = "txtName" size="13mm" maxlength="13" style="height = 18px" />
+  <br/>
+    <br/>
+  
+  <input type = "button" value = "click me" onclick = "sayHi()" maxlength="13" />
+  <br/>
+    <br/>
+  <input type = "text" id = "txtOutput" maxlength="13" size="13mm" />
+            </div>
+  
+    
+    <script type = "text/javascript">
+  // from textBoxes.html
+  function sayHi(){
+  var txtName = document.getElementById("txtName");
+  var txtOutput = document.getElementById("txtOutput");
+  var name = txtName.value;
+  txtOutput.value = " " + name + ""
+  } // end sayHi
+ </script>
+    
+    
+        <script>
+
+            try {
+
+                document.getElementById('file').onchange = function() {
+
+                    document.getElementById('isbn').innerHTML = 'Processing…';
+
+                    var image = new Image();
+
+                    image.onload = function () {
+
+                        var canvas = document.getElementById('canvas');
+                        var width = canvas.width;
+                        var height = canvas.height;
+
+                        var context = canvas.getContext('2d');
+                        context.drawImage(image, 0, 0, width, height);
+
+                        var barcode = new Barcode(context, width, height);
+                        var line = barcode.scan();
+
+                        if (line) {
+
+                            document.getElementById('isbn').innerHTML = line.isbn;
+                            barcode.print(line);
+
+                        } else {
+                            document.getElementById('isbn').innerHTML = 'Sorry, could not find barcode… please try again';
+                        }
+                    };
+
+                    image.src = window.webkitURL.createObjectURL(this.files[0]);
+                };
+
+            } catch (e) {
+                alert(e);
+            }
+
+        </script>
+    </body>
+</html>
